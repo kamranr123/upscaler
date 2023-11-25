@@ -7,6 +7,10 @@ try:
 except ImportError:
     from typing_extensions import Literal
 
+from PIL import Image, ImageOps
+import numpy as np
+import os
+import safetensors
 import torch
 import torch.nn as nn
 
@@ -904,7 +908,7 @@ class UpscaleModel:
 
     def load_model(self, model_path):
         if not os.path.exists(model_path):
-            print(f'{model_name} not found!')
+            print(f'{model_path} not found!')
             return
 
         sd = self._load_torch_file(model_path, safe_load=True)
